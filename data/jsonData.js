@@ -22,12 +22,17 @@ const throwError = (msg, statusCode) => {
 const self = {
     policies: [],
     users: [],
+    accounts: [],
     initData: async () => {
         try {
             const p = await axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5');
             const u = await axios.get('http://www.mocky.io/v2/5808862710000087232b75ac');
             self.policies = p.data.policies;
             self.users = u.data.clients;
+
+            self.users.forEach((element) => {
+                self.accounts.push({ username: element.name, password: element.email });
+            });
         } catch (err) {
             throwError(err.message, 500);
         }
@@ -50,6 +55,15 @@ const self = {
 
         return user;
     },
+    getUserByName: (userName) => {
+        const user = _.find(self.users, { name: userName });
+
+        if (typeof user === 'undefined') {
+            throwError('User not found!', 404);
+        }
+
+        return user;
+    },
     getPolicies: (query) => {
         let { policies } = self;
 
@@ -60,6 +74,7 @@ const self = {
         return policies;
     },
     getPolicy: (policyId) => _.find(self.policies, { id: policyId }),
+    getAccounts: () => self.accounts,
 };
 
 module.exports = self;
