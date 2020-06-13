@@ -1,41 +1,65 @@
 const axios = require('axios');
 const _ = require('lodash');
 
-let self = module.exports = {
+const listFilter = (field, value, list) => {
+    const matches = _.filter(list, (o) => {
+        // eslint-disable-next-line no-prototype-builtins
+        if (!o.hasOwnProperty(field)) {
+            return false;
+        }
+        return String(o[field]).toLowerCase() === value.toLowerCase();
+    });
+
+    return matches;
+};
+
+const throwError = (msg, statusCode) => {
+    const err = new Error(msg);
+    err.statusCode = statusCode;
+    throw err;
+};
+
+const self = {
     policies: [],
     users: [],
     initData: async () => {
         try {
-            console.log('Fetching initial data ...');
-            let p = await axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5');
-            let u = await axios.get('http://www.mocky.io/v2/5808862710000087232b75ac');
+            const p = await axios.get('http://www.mocky.io/v2/580891a4100000e8242b75c5');
+            const u = await axios.get('http://www.mocky.io/v2/5808862710000087232b75ac');
             self.policies = p.data.policies;
             self.users = u.data.clients;
-            console.log('Data initiated');
         } catch (err) {
-            console.log(err);
+            throwError(err.message, 500);
         }
+    },
+    getUsers: (query) => {
+        let { users } = self;
+
+        for (const [key, value] of Object.entries(query)) {
+            users = listFilter(key, value, users);
+        }
+
+        return users;
     },
     getUser: (userId) => {
-        return _.find(self.users, {'id':userId});
-    },
-    getUserByProperty: (field, value) => {
-        let matches = _.find(self.users, (o) => {
-            return o[field].toLowerCase() == value.toLowerCase();
-        });
-    
-        if (!matches) {
-            const err = new Error('User not found!');
-            err.statusCode = 404;
-            throw err;
+        const user = _.find(self.users, { id: userId });
+
+        if (typeof user === 'undefined') {
+            throwError('User not found!', 404);
         }
-    
-        return matches;
+
+        return user;
     },
-    getPolicy: (policyId) => {
-        return _.find(self.policies, {'id':policyId});
+    getPolicies: (query) => {
+        let { policies } = self;
+
+        for (const [key, value] of Object.entries(query)) {
+            policies = listFilter(key, value, policies);
+        }
+
+        return policies;
     },
-    getUserPolicies: (user) => {
-        return _.filter(self.policies, {'clientId':user.id});
-    }
+    getPolicy: (policyId) => _.find(self.policies, { id: policyId }),
 };
+
+module.exports = self;

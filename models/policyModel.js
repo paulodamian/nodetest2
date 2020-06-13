@@ -1,8 +1,7 @@
-module.exports={
-   
-    getUser: (id) => {
-        return 'Your user id is: ' + id;
-    },
-    
+const data = require('../data/jsonData');
 
-}
+module.exports = {
+
+    getPolicies: (query) => data.getPolicies(query),
+
+};

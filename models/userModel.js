@@ -1,7 +1,8 @@
+const data = require('../data/jsonData');
+
 module.exports = {
-   
-    getUser: (id) => {
-        return 'Your user id is: ' + id;
-    },
-    
-}
+
+    getUsers: (query) => data.getUsers(query),
+    getUser: (id) => data.getUser(id),
+
+};
