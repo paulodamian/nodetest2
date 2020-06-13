@@ -7,10 +7,15 @@
     "parserOptions": {
         "ecmaVersion": 11
     },
+    "settings": {
+        "react": {
+            "version": "none"
+        }
+    },
     "extends": "airbnb",
     "rules": {
         "indent": ["error", 4],
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": ["off", "windows"],
         "no-restricted-syntax": "off",
         "no-console": "error",
         "no-var": "error"
