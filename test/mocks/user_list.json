@@ -1,0 +1,32 @@
+[
+   {
+      "id": "a0ece5db-cd14-4f21-812f-966633e7be86",
+      "name": "Britney",
+      "email": "britneyblankenship@quotezart.com",
+      "role": "admin"
+   },
+   {
+      "id": "e8fd159b-57c4-4d36-9bd7-a59ca13057bb",
+      "name": "Manning",
+      "email": "manningblankenship@quotezart.com",
+      "role": "admin"
+   },
+   {
+      "id": "a3b8d425-2b60-4ad7-becc-bedf2ef860bd",
+      "name": "Barnett",
+      "email": "barnettblankenship@quotezart.com",
+      "role": "user"
+   },
+   {
+      "id": "44e44268-dce8-4902-b662-1b34d2c10b8e",
+      "name": "Merrill",
+      "email": "merrillblankenship@quotezart.com",
+      "role": "user"
+   },
+   {
+      "id": "0178914c-548b-4a4c-b918-47d6a391530c",
+      "name": "Whitley",
+      "email": "whitleyblankenship@quotezart.com",
+      "role": "admin"
+   }
+]

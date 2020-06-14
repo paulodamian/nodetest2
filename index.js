@@ -60,6 +60,12 @@ const jsonErrorHandler = async (err, req, res, next) => {
 };
 app.use(jsonErrorHandler);
 
-app.listen(port, async () => {
+const server = app.listen(port, async () => {
+    /* This is just to not get the json data on every request so the test run faster.
+    If this were a real API then this initial fetch would be not needed */
+    await data.initData();
+    OAuthModel.config.users = data.accounts;
     console.log(`Listening to requests on http://localhost:${port}`); // eslint-disable-line no-console
 });
+
+module.exports = server;

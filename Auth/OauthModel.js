@@ -1,13 +1,3 @@
-const data = require('../data/jsonData');
-
-/* This is just to not get the json data on every request so the test run faster.
-    If this were a real API then this initial fetch would be not needed */
-const initData = async () => {
-    await data.initData();
-};
-
-initData();
-
 /**
  * Configuration.
  */
@@ -33,7 +23,7 @@ const config = {
         redirectUris: [],
     }],
     tokens: [],
-    users: data.getAccounts(),
+    users: [{ username: 'Britney', password: 'test' }],
 };
 
 /*
@@ -137,4 +127,5 @@ module.exports = {
     getUserFromClient,
     getRefreshToken,
     revokeToken,
+    config,
 };
