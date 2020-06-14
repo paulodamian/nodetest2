@@ -39,7 +39,7 @@ postParams {
 Where you could get the users from http://www.mocky.io/v2/5808862710000087232b75ac using the email as the password
 ```
 
-Endpoints: (remember the you need the **Authorization header**)
+Endpoints: (remember that you need the **Authorization header**)
 * /users (full list of users)
 * /users?filters (filtered list of users by any field. i.e:/users?role=admin)
 * /users/:id (single user by userId)
