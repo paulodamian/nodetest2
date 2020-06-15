@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
-const sinon = require('sinon');
 const chai = require('chai');
 const data = require('../data/jsonData');
-const userModel = require('../models/userModel');
 const dataUsersMock = require('./mocks/user_list.json');
 const dataPolicyMock = require('./mocks/policy_list.json');
 
@@ -39,19 +37,5 @@ describe('Data initialization and handling', () => {
         query = { clientId: 'e8fd159b-57c4-4d36-9bd7-a59ca13057bb' };
         const userList = data.getPolicies(query);
         expect(userList).to.be.instanceOf(Array).which.have.lengthOf(5);
-    });
-});
-
-describe('User Model', () => {
-    const query = {};
-
-    it('should return all users/clients when called', () => {
-        sinon.stub(data, 'getUsers').returns(dataUsersMock);
-        const userList = userModel.getUsers(query);
-        expect(userList).to.be.instanceOf(Array).which.have.lengthOf(5);
-        expect(userList[0]).to.have.property('id');
-        expect(userList[0]).to.have.property('name');
-        expect(userList[0]).to.have.property('email');
-        expect(userList[0]).to.have.property('role');
     });
 });
