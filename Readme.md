@@ -52,4 +52,4 @@ Requested functionality to endpoints:
 - Get the list of policies linked to a user id -> /policies?clientId=userId - i.e: /policies?clientId=e8fd159b-57c4-4d36-9bd7-a59ca13057bb
 
 Final Notes:
-I have implemented the Authentication and authorization part of the assesment using the library oauth2-server (https://github.com/oauthjs/node-oauth2-server), wich has come into active development and maintence a few days ago, because I found it simple enougth to implemented in this case. There are many other libraries that could be used that use this same model or a jwt implementation.
+I have implemented the Authentication and authorization part of the assesment using the library oauth2-server (https://github.com/oauthjs/node-oauth2-server), wich has come into active development and maintence a few days ago, because I found it simple enougth to use in this case. There are many other libraries that could be used that use this same model or a jwt implementation.
