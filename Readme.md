@@ -46,7 +46,7 @@ Endpoints: (remember that you need the **Authorization header**)
 * /policies (full list of policies)
 * /policies?filters (filtered list of policies by any field. i.e:/policies?clientId=e8fd159b-57c4-4d36-9bd7-a59ca13057bb)
 
-Requested functionaliti to endpoints:
+Requested functionality to endpoints:
 - Get user data filtered by user id -> /users/:id - i.e: /users/e8fd159b-57c4-4d36-9bd7-a59ca13057bb
 - Get user data filtered by user name -> /users?name=userName - i.e: /users?name=britney
 - Get the list of policies linked to a user id -> /policies?clientId=userId - i.e: /policies?clientId=e8fd159b-57c4-4d36-9bd7-a59ca13057bb
